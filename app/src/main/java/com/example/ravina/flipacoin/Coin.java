@@ -5,8 +5,10 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -28,7 +30,7 @@ public class Coin extends AppCompatActivity {
         random = new Random();
 
         // button aesthetics
-        flipButton.setBackgroundColor(Color.BLACK);
+        flipButton.setBackgroundColor(Color.DKGRAY);
 //        Typeface customFont = Typeface.createFromAsset(getAssets(), "Fonts/cooper.ttf");
 //        flipButton.setTypeface(customFont);
 
@@ -41,9 +43,26 @@ public class Coin extends AppCompatActivity {
 
                 if(coinSide == 0) {
                     coinIV.setImageResource(R.drawable.heads);
+
+                    //toast
+                    Toast toast = Toast.makeText(Coin.this, "Heads!", Toast.LENGTH_SHORT);
+                    toast.setMargin(0, -1);
+                    toast.show();
                 } else {
                     coinIV.setImageResource(R.drawable.tails);
+
+                    //toast
+                    Toast toast = Toast.makeText(Coin.this, "Tails!", Toast.LENGTH_SHORT);
+                    toast.setMargin(0, -1);
+                    toast.show();
                 }
+
+
+                RotateAnimation rotate = new RotateAnimation(0, 360,
+                        RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+
+                rotate.setDuration(1000);
+                coinIV.startAnimation(rotate);
 
             }
         });
